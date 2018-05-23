@@ -1,0 +1,31 @@
+This is the wish-add page. Save your wishes and make them come sure later!~
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="/wishlist">Home</a>
+    <a href="/logout">Logout</a>
+
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+
+    <h1>Add a trip</h1>
+
+    <form class="" action="/processadd" method="post">
+      {% csrf_token %}
+      Itemname: <input type="text" name="itemname" value=""><br><br>
+      Date create: <input type="date" name="adddate" value=""><br><br>
+      <input type="submit" name="submit" value="Add">
+    </form>
+  </body>
+</html>

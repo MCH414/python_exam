@@ -1,0 +1,69 @@
+this is my wishlist
+<a href="/logout">Logout</a>
+<a href="/addpage">Add A Wish</a>
+
+{%for user in wish.all_wishmaker.all%}
+<p>Hello, {{user.name}}</p> Join the app since : {{user.regdate}} (UTC time)
+{% endfor %}
+<p>Your Wishlist</p>
+
+
+  {%for user in wish.all_wishmaker.all|slice:'1:'%}
+    <p>{{user.name}}</p>
+  {% endfor %}
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Date add</th>
+    <th>Add By</th>
+    <th>Action</th>
+  </tr>
+
+  {% for wish in userwish.all%}
+  <tr>
+<td><a href="wishlist/wishpage/{{wish.id}}">{{wish.itemname}}</a></td>
+<td>{{wish.adddate}}</td>
+    <td>{{wish.wish_creater.name}}</td>
+    <td><a href="wishlist/delete/{{wish.id}}">delete</a></td>
+
+  </tr>
+  {% endfor %}
+
+  {% for wish in other_wish.all%}
+  <tr>
+    <td><a href="wishlist/wishpage/{{wish.id}}">{{wish.itemname}}</a></td>
+<td>{{wish.adddate}}</td>
+    <td>{{wish.wish_creater.name}}</td>
+    <td><a href="wishlist/delete/{{wish.id}}">delete</a></td>
+
+  </tr>
+  {% endfor %}
+</table><br><br>
+
+
+<p>Other user's travel plan:</p>
+<table>
+  <tr>
+    <th>Itemname</th>
+    <th>Addby</th>
+    <th>Add Date</th>
+    <th>Do you want to add?</th>
+  </tr>
+  {% for other in otherwish.all%}
+  <tr>
+    <td><a href="wishlist/wishpage/{{other.id}}">{{other.itemname}}</a></td>
+    <td>{{other.wish_creater.name}}</td>
+    <td>{{other.adddate}}</td>
+    <td><a href="joinwish/{{other.id}}">Join</a></td>
+  </tr>
+  {%endfor%}
+
+  {% for other in otherwish.all%}
+  <tr>
+    <td><a href="wishlist/wishpage/{{other.id}}">{{other.itemname}}</a></td>
+    <td>{{other.wish_creater.name}}</td>
+    <td>{{other.adddate}}</td>
+    <td><a href="joinwish/{{other.id}}">Join</a></td>
+  </tr>
+  {%endfor%}
+</table><br><br>
